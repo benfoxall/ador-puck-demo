@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      div {height: 1em;width: 1em; display:inline-block;background-color: #ccc;border-radius: 100%;margin:.1em;}
+    </style>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+      const nope = () => {}
+
+      var pixel = Array.from({length: 64}, _ => {
+        const div = document.createElement('div')
+        document.body.appendChild(div)
+        return (r,g,b) => {
+          div.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        }
+      })
+
+      var getTime = () => Date.now()/1000
+      var pinMode = nope
+      var D1 = {}
+      var E = {
+        neopixelWrite: (pin, data) => {
+          for (var i = 0; i < data.length; i+=3) {
+            pixel[i/3](
+              data[i],data[i+1],data[i+2]
+            )
+          }
+        }
+      }
+
+    </script>
+    <script src="src/lights-neo.js"></script>
+  </body>
+</html>
